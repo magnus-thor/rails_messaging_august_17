@@ -4,9 +4,14 @@ Feature: user should be able to use mailservice
   And I should be able to reply to an email
   And I should be able to trash an email
 
-  Scenario: user should be able to send message
+  Background:
     Given I am on the site
-    And I log in
+    And There is a user called "Raoul" with email "raoul@test.com" in our database
+    And There is a user called "Faraz" with email "faraz@test.com" in our database
+    And I log in as "Raoul"
+
+
+  Scenario: user should be able to send message
     Then I should be able to press "inbox"
     Then I should be able to press "compose"
     And I choose "Faraz" as a recipient from the list

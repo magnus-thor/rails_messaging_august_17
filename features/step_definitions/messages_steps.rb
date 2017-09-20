@@ -9,7 +9,7 @@ end
 
 Given(/^I log in as "([^"]*)"$/) do |arg1|
   user = User.find_by name: name
-  sign_in(user, :scope => :user)
+  login_as(user, :scope => :user)
 end
 
 Then(/^I should be able to press "([^"]*)"$/) do |button|

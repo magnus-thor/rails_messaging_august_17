@@ -26,13 +26,9 @@ Then(/^I choose "([^"]*)" as a recipient from the list$/) do |user|
 end
 
 Then(/^I fill in the field "([^"]*)" with "([^"]*)"$/) do |field, content|
-  
+  fill_in field, with: content
 end
 
-Then(/^I press "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then(/^I should see the text "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
+Then(/^I should see the text "([^"]*)"$/) do |message|
+  expect(page).to have_content message
 end

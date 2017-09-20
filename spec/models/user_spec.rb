@@ -8,17 +8,17 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_db_column :email }
   end
 
+  describe 'Validations' do
+    it { is_expected.to validate_presence_of :name }
+  end
+
   describe 'mailboxer' do
-    let(:sender) {create(:user, name: 'sender') }
-    let(:receiver) {create(:user, name: 'receiver')}
+    let(:sender) {build(:user, name: 'sender') }
+    let(:receiver) {build(:user, name: 'receiver')}
 
     before do
       sender.send_message(receiver, "body", "subject")
     end
-
-  describe 'Validations' do
-    it { is_expected.to validate_presence_of :name }
-  end
 
     it 'creates a user with valid info' do
       expect(sender).to be_valid
@@ -42,10 +42,8 @@ RSpec.describe User, type: :model do
       it 'should have a text body' do
         conversation = receiver.mailbox.inbox.first
         receipts = conversation.receipts_for receiver
-        receipts.each do |receipt|
-          @message = receipt.message
-        end
-        expect(@message.body).to eq "body"
+        message = receipts.first.message
+        expect(message.body).to eq "body"
       end
     end
 

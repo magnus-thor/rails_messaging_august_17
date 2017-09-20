@@ -9,8 +9,8 @@ RSpec.describe User, type: :model do
   end
 
   describe 'mailboxer' do
-    let(:sender) {FactoryGirl.create(:user) }
-    let(:receiver) {FactoryGirl.create(:user, name: 'receiver', email: 'receiver@test.com', password: 'password' )}
+    let(:sender) {FactoryGirl.create(:user, name: 'sender') }
+    let(:receiver) {FactoryGirl.create(:user, name: 'receiver')}
 
     before do
       sender.send_message(receiver, "body", "subject")

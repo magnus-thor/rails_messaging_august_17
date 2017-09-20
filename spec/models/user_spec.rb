@@ -31,7 +31,6 @@ RSpec.describe User, type: :model do
       end
 
       it 'should be a new message in the Senders outbox' do
-
         expect(sender.mailbox.sentbox.count).to eq 1
       end
 

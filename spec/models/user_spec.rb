@@ -9,8 +9,12 @@ RSpec.describe User, type: :model do
   end
 
   describe 'mailboxer' do
-    let (:sender) { User.create(email: 'sender@test.com', password: 'password', name: 'sender') }
-    let (:receiver) { User.create(email: 'receiver@test.com', password: 'password', name: 'receiver') }
+    let(:sender) {FactoryGirl.create(:user) }
+    let(:receiver) {FactoryGirl.create(:user, name: 'receiver', email: 'receiver@test.com', password: 'password' )}
+
+    before do
+      sender.send_message(receiver, "body", "subject")
+    end
 
     it 'creates a user with valid info' do
       expect(sender).to be_valid
@@ -18,15 +22,11 @@ RSpec.describe User, type: :model do
 
     describe 'send message' do
 
-      before do
-        sender.send_message(receiver, "body", "subject")
-      end
-
-      it 'should be a new message in the recievers inbox' do
+      it 'should be a new message in the Recievers inbox' do
         expect(receiver.mailbox.inbox.count).to eq 1
       end
 
-      it 'should be a new message in the senders outbox' do
+      it 'should be a new message in the Senders outbox' do
         expect(sender.mailbox.sentbox.count).to eq 1
       end
 
@@ -41,6 +41,26 @@ RSpec.describe User, type: :model do
           @message = receipt.message
         end
         expect(@message.body).to eq "body"
+      end
+    end
+
+    describe 'reply to message' do
+
+      before do
+        conversation = receiver.mailbox.inbox.first
+        receiver.reply_to_conversation(conversation, "reply body")
+      end
+
+      it 'should be a new message in Senders inbox' do
+        expect(sender.mailbox.inbox.count).to eq 1
+      end
+
+      it 'should be a new message in Receivers outbox' do
+        expect(receiver.mailbox.sentbox.count).to eq 1
+      end
+
+      it 'should have the same subject as earlier' do
+        expect(sender.mailbox.inbox.last.subject).to eq "subject"
       end
     end
   end

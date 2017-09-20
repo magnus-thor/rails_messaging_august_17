@@ -3,12 +3,13 @@ Given(/^I am on the site$/) do
 end
 
 Given(/^There is a user called "([^"]*)" with email "([^"]*)" in our database$/) do |name, email|
-  User.create(name: name, email: email, password: "password")
+  # User.create(name: name, email: email, password: "password")
+  FactoryGirl.create(:user, name: name, email: email)
 end
 
 Given(/^I log in as "([^"]*)"$/) do |arg1|
-  user = User.first
-  login_as(user)
+  user = User.find_by name: name
+  sign_in(user, :scope => :user)
 end
 
 Then(/^I should be able to press "([^"]*)"$/) do |button|

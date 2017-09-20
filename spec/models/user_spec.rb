@@ -26,12 +26,6 @@ RSpec.describe User, type: :model do
         sender.send_message(receiver, "body", "subject")
       end
 
-      before(:each) do
-        @conversation = receiver.mailbox.inbox.first
-        @receipts = @conversation.receipts_for receiver
-      end
-
-
       it 'should be a new message in the recievers inbox' do
         expect(receiver.mailbox.inbox.count).to eq 1
       end
@@ -45,10 +39,23 @@ RSpec.describe User, type: :model do
       end
 
       it 'should have a text body' do
-        @receipts.each do |receipt|
+        conversation = receiver.mailbox.inbox.first
+        receipts = conversation.receipts_for receiver
+        receipts.each do |receipt|
           @message = receipt.message
         end
         expect(@message.body).to eq "body"
+      end
+    end
+
+    describe 'delete message' do
+      before do
+        sender.send_message(receiver, "body", "subject")
+      end
+
+      before(:each) do
+        @conversation = receiver.mailbox.inbox.first
+        @receipts = @conversation.receipts_for receiver
       end
 
       it 'user is able to delete receipt' do

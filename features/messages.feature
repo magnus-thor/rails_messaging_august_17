@@ -9,11 +9,12 @@ Feature: user should be able to use mailservice
     And There is a user called "Raoul" with email "raoul@test.com" in our database
     And There is a user called "Faraz" with email "faraz@test.com" in our database
     And I log in as "Raoul"
+    And I am on the inbox page
 
 
   Scenario: user should be able to send message
-    Then I should be able to press "inbox"
-    Then I should be able to press "compose"
+    Then I should be able to press "Inbox"
+    Then I should be able to press "Compose"
     And I choose "Faraz" as a recipient from the list
     And I fill in the field "Subject" with "subject"
     And I fill in the field "Message" with "message"

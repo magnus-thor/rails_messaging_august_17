@@ -85,6 +85,11 @@ RSpec.describe User, type: :model do
         @conversation.mark_as_deleted receiver
         expect(receiver.mailbox.inbox.count).to eq 0
       end
+
+      it 'user can put his message in trash' do
+        @receipts[0].move_to_trash
+        expect(receiver.mailbox.trash.count).to eq 1
+      end
     end
   end
 end

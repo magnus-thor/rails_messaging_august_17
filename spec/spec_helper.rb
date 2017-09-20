@@ -20,8 +20,5 @@ RSpec.configure do |config|
       example.run
     end
   end
-
-  config.include Factory::Syntax::Metods
-
   config.shared_context_metadata_behavior = :apply_to_host_groups
 end

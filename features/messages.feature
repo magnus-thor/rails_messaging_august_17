@@ -1,0 +1,17 @@
+Feature: user should be able to use mailservice
+  I should be able to log in
+  And I should be able to create an email
+  And I should be able to reply to an email
+  And I should be able to trash an email
+
+  Scenario: user should be able to send message
+    Given I am on the site
+    And I log in
+    Then I should be able to press "inbox"
+    Then I should be able to press "compose"
+    And I choose "Faraz" as a recipient from the list
+    And I fill in the field "Subject" with "subject"
+    And I fill in the field "Message" with "message"
+    And I press "Send Message"
+    And I should see the text "Your message was successfully sent!"
+

@@ -23,7 +23,9 @@ Feature: User should be able to use mailservice
 
   Scenario: User can reply to message
     Given I have mail from "Faraz"
+    And I press "Inbox"
     And I press "View"
     And I fill in the field "Reply Message" with "reply message"
     And I press "Reply"
+    And I should see the text "Your reply message was successfully sent!"
 

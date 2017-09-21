@@ -8,7 +8,7 @@ end
 
 Given(/^I log in as "([^"]*)"$/) do |name|
   user = User.find_by name: name
-  login_as (user)
+  login_as(user)
 end
 
 Given(/^I am on the inbox page$/) do

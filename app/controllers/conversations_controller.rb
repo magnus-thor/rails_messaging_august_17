@@ -11,7 +11,7 @@ class ConversationsController < ApplicationController
       flash[:success] = 'Your message was successfully sent!'
       redirect_to conversation_path(conversation)
     else
-      flash[:warning] = "You haven\'t filled out all the fields"
+      flash[:warning] = 'You need to fill out all the fields'
       redirect_to mailbox_inbox_path
     end
   end

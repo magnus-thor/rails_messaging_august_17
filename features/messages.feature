@@ -67,4 +67,4 @@ Feature: User should be able to use mail service
     And I fill in the field "Subject" with ""
     And I fill in the field "Type your message here" with ""
     And I press "Send Message"
-    Then I should see the text "You haven\'t filled out all the fields"
+    Then I should see the text "You need to fill out all the fields"

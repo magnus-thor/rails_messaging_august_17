@@ -7,8 +7,12 @@ class ConversationsController < ApplicationController
   def create
     recipients = User.where(id: conversation_params[:recipients])
     conversation = current_user.send_message(recipients, conversation_params[:body], conversation_params[:subject]).conversation
-    flash[:success] = 'Your message was successfully sent!'
-    redirect_to conversation_path(conversation)
+    if conversation
+      flash[:success] = 'Your message was successfully sent!'
+      redirect_to conversation_path(conversation)
+    else
+      flash[:warning] = "You haven\'t filled out all the fields"
+    end
   end
 
   def show

@@ -59,3 +59,12 @@ Feature: User should be able to use mail service
     Then I should see the text "Your message was successfully sent!"
     Given I press "Sent"
     Then I should see the text "some awesome message"
+
+  Scenario: User leaves an empty field
+    Given I press "Inbox"
+    And I press "Compose"
+    And I choose "Faraz" as a recipient from the list
+    And I fill in the field "Subject" with ""
+    And I fill in the field "Type your message here" with ""
+    And I press "Send Message"
+    Then I should see the text "You haven\'t filled out all the fields"

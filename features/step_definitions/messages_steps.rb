@@ -20,7 +20,7 @@ Then(/^I press "([^"]*)"$/) do |button|
 end
 
 Then(/^I choose "([^"]*)" as a recipient from the list$/) do |user|
-  select "Faraz", :from => "conversation_recipients"
+  select "Faraz", from: "conversation_recipients"
   expect(find_field('conversation_recipients').find('option[selected]').text).to eq('Faraz')
 end
 
@@ -32,8 +32,8 @@ Then(/^I should see the text "([^"]*)"$/) do |message|
   expect(page).to have_content message
 end
 
-Given(/^I have mail from "([^"]*)"$/) do |name|
-  sender = User.find_by name: name
-  receiver = User.find_by name: 'Raoul'
+Given(/^I have mail from "([^"]*)" to "([^"]*)"$/) do |sender, receiver|
+  sender = User.find_by name: sender
+  receiver = User.find_by name: receiver
   sender.send_message(receiver, "body", "subject")
 end

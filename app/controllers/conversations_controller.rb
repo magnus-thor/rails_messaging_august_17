@@ -12,6 +12,7 @@ class ConversationsController < ApplicationController
       redirect_to conversation_path(conversation)
     else
       flash[:warning] = "You haven\'t filled out all the fields"
+      redirect_to mailbox_inbox_path
     end
   end
 

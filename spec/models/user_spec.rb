@@ -23,11 +23,11 @@ RSpec.describe User, type: :model do
     end
 
     it 'has a mailboxer name' do
-      expect(User.last.name).to eq 'receiver'
+      expect(User.last.mailboxer_name).to eq 'receiver'
     end
 
     it 'has a mailboxer email' do
-      expect(User.last.email).to eq 'receiver@test.com'
+      expect(User.last.mailboxer_email(0)).to eq 'receiver@test.com'
     end
 
     it 'creates a user with valid info' do

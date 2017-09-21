@@ -22,13 +22,13 @@ RSpec.describe User, type: :model do
       sender.send_message(receiver, 'body', 'subject')
     end
 
-    # it 'has a mailboxer name' do
-    #   expect(mailboxer.name).to eq name
-    # end
-    #
-    # it 'has a mailboxer email' do
-    #   expect(mailboxer.email).to eq email
-    # end
+    it 'has a mailboxer name' do
+      expect(receiver.name).to eq 'receiver'
+    end
+
+    it 'has a mailboxer email' do
+      expect(receiver.email).to eq 'receiver@test.com'
+    end
 
     it 'creates a user with valid info' do
       expect(sender).to be_valid

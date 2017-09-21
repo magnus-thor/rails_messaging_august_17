@@ -37,4 +37,3 @@ Given(/^I have mail from "([^"]*)"$/) do |name|
   receiver = User.find_by name: 'Raoul'
   sender.send_message(receiver, "body", "subject")
 end
-

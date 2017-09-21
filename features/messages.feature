@@ -3,6 +3,7 @@ Feature: User should be able to use mailservice
   And I should be able to create an email
   And I should be able to reply to an email
   And I should be able to trash an email
+  And I should be able to untrash an email
 
   Background:
     Given I am on the site
@@ -29,3 +30,20 @@ Feature: User should be able to use mailservice
     And I press "Reply"
     And I should see the text "Your reply message was successfully sent!"
 
+  Scenario: User can trash a message
+    Given I have mail from "Faraz"
+    And I press "Inbox"
+    And I press "View"
+    And I press "Move to trash"
+    And I press "Trash"
+    Then I should see the text "body"
+
+  Scenario: User can untrash a message
+    Given I have mail from "Faraz"
+    And I press "Inbox"
+    And I press "View"
+    And I press "Move to trash"
+    And I press "Trash"
+    And I press "View"
+    And I press "Untrash"
+    Then I should see the text "body"

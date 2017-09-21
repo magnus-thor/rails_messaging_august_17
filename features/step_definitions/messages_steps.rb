@@ -20,7 +20,7 @@ Then(/^I press "([^"]*)"$/) do |button|
 end
 
 Then(/^I choose "([^"]*)" as a recipient from the list$/) do |user|
-  select "Faraz", from: "conversation_recipients"
+  select user, from: "conversation_recipients"
 end
 
 Then(/^I fill in the field "([^"]*)" with "([^"]*)"$/) do |field, content|

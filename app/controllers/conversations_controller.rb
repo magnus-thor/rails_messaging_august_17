@@ -2,6 +2,7 @@ class ConversationsController < ApplicationController
   before_action :authenticate_user!
 
   def new
+    flash[:info] = 'Please fill out all the fields, then press Send Message'
   end
 
   def create

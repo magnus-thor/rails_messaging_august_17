@@ -24,7 +24,7 @@ Feature: User should be able to use mail service
     Then I should see the text "Your message was successfully sent!"
 
   Scenario: User can reply to message
-    Given I have mail from "Faraz"
+    Given I have mail from "Faraz" to "Raoul"
     And I press "Inbox"
     And I press "View"
     And I fill in the field "Reply Message" with "reply message"
@@ -32,7 +32,7 @@ Feature: User should be able to use mail service
     Then I should see the text "Your reply message was successfully sent!"
 
   Scenario: User can trash a message
-    Given I have mail from "Faraz"
+    Given I have mail from "Faraz" to "Raoul"
     And I press "Inbox"
     And I press "View"
     And I press "Move to trash"
@@ -40,7 +40,7 @@ Feature: User should be able to use mail service
     Then I should see the text "body"
 
   Scenario: User can untrash a message
-    Given I have mail from "Faraz"
+    Given I have mail from "Faraz" to "Raoul"
     And I press "Inbox"
     And I press "View"
     And I press "Move to trash"

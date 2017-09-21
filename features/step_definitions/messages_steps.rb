@@ -15,7 +15,7 @@ Given(/^I am on the inbox page$/) do
   visit mailbox_inbox_path
 end
 
-Then(/^I should be able to press "([^"]*)"$/) do |button|
+Then(/^I press "([^"]*)"$/) do |button|
   # binding.pry
   click_link_or_button button
 end
@@ -32,3 +32,11 @@ end
 Then(/^I should see the text "([^"]*)"$/) do |message|
   expect(page).to have_content message
 end
+
+Given(/^I have mail from "([^"]*)"$/) do |name|
+  sender = User.find_by name: name
+  receiver = User.find_by name: 'Raoul'
+  sender.send_message(receiver, "body", "subject")
+  binding.pry
+end
+

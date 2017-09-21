@@ -13,17 +13,17 @@ Feature: User should be able to use mailservice
 
 
   Scenario: User should be able to send message
-    Then I should be able to press "Inbox"
-    Then I should be able to press "Compose"
+    Then I press "Inbox"
+    Then I press "Compose"
     And I choose "Faraz" as a recipient from the list
     And I fill in the field "Subject" with "subject"
     And I fill in the field "Type your message here" with "message"
-    And I should be able to press "Send Message"
+    And I press "Send Message"
     And I should see the text "Your message was successfully sent!"
 
   Scenario: User can reply to message
-    Given I should be able to press "Sent"
-    And I should be able to press "View"
+    Given I have mail from "Faraz"
+    And I press "View"
     And I fill in the field "Reply Message" with "reply message"
-    And I should be able to press "Reply"
+    And I press "Reply"
 

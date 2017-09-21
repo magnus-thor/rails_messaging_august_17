@@ -30,11 +30,13 @@ class ConversationsController < ApplicationController
   end
 
   def trash
+    flash[:danger] = 'Your message is now trashed'
     conversation.move_to_trash(current_user)
     redirect_to mailbox_inbox_path
   end
 
   def untrash
+    flash[:info] = 'Your message is now untrashed'
     conversation.untrash(current_user)
     redirect_to mailbox_inbox_path
   end

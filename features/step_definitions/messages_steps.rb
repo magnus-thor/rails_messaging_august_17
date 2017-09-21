@@ -16,7 +16,6 @@ Given(/^I am on the inbox page$/) do
 end
 
 Then(/^I press "([^"]*)"$/) do |button|
-  # binding.pry
   click_link_or_button button
 end
 
@@ -37,6 +36,5 @@ Given(/^I have mail from "([^"]*)"$/) do |name|
   sender = User.find_by name: name
   receiver = User.find_by name: 'Raoul'
   sender.send_message(receiver, "body", "subject")
-  binding.pry
 end
 

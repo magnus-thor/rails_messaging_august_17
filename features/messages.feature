@@ -68,3 +68,6 @@ Feature: User should be able to use mail service
     And I fill in the field "Type your message here" with ""
     And I press "Send Message"
     Then I should see the text "You need to fill out all the fields"
+
+  Scenario: User leaves empty field when replying
+    

@@ -70,4 +70,8 @@ Feature: User should be able to use mail service
     Then I should see the text "You need to fill out all the fields"
 
   Scenario: User leaves empty field when replying
-    
+    Given I have mail from "Faraz" to "Raoul"
+    Given I press "Inbox"
+    And I press "View"
+    And I press "Reply"
+    Then I should see the text "Message can not be empty"
